@@ -1,24 +1,16 @@
-import React ,{useState,useEffect} from "react"
-import { getStoryIds } from "./services/hnApi" 
+import React, { useState, useEffect } from "react";
+import { getStoryIds,getStory } from "../services/hnApi";
 
-export const StoriesContainer=()=>{
+export const StoriesContainer = () => {
+  const [storyIds, setStoryIds] = useState([]);
 
-    const [storyIds,setStoryIds]=useState([])
+  useEffect(() => {
+    getStory().then((data) => data && setStoryIds(data));
+  }, []);
 
-
-    useEffect(()=>{
-getStoryIds().then(data=> data && setStoryIds(data));
-
-    },[])
-
-return(
-<div> 
-  
-<ul>
-    {JSON.stringify(storyIds)}</ul>
+  return (
+    <div>
+      <ul>{JSON.stringify(storyIds)}</ul>
     </div>
-
-);
-
-}
- 
+  );
+};

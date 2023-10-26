@@ -1,22 +1,22 @@
-import axios from 'axios';
+import axios from "axios";
 
-export const baseUrl=' https://hacker-news.firebaseio.com/v0/';
-export const newStoriesUrl=`${baseUrl}topstories.json?print=pretty`;
-export const storyUrl=`${baseUrl}item/`;
+export const baseUrl = " https://hacker-news.firebaseio.com/v0/";
+export const newStoriesUrl = `${baseUrl}topstories.json?print=pretty`;
+export const storyUrl = `${baseUrl}item/`;
 
 
-//important
-export const getStoryIds=async ()=>{
+//important specific stories
+export const getStory=async(storyId=38023694)=>{
 
-const result=await axios.get(newStoriesUrl).then(({ data  }) => data)
-
-return result;
-
+    const result=await axios.get(`${storyUrl + storyId}.json`).then(({data})=> data)
+    return result;
 }
 
 
-// export const story=getStoryIds().map(data=>(
-//     <li>
-//        {data}
-//     </li>
-// ))
+
+//important all stories
+export const getStoryIds = async () => {
+  const result = await axios.get(newStoriesUrl).then(({ data }) => data);
+
+  return result;
+};
