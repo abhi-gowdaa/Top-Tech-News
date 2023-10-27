@@ -1,14 +1,16 @@
 import axios from "axios";
+import { selectFields } from "../utils/selectFields";
 
 export const baseUrl = " https://hacker-news.firebaseio.com/v0/";
-export const newStoriesUrl = `${baseUrl}topstories.json?print=pretty`;
+export const newStoriesUrl = `${baseUrl}newstories.json`;
 export const storyUrl = `${baseUrl}item/`;
 
 
 //important specific stories
-export const getStory=async(storyId=38023694)=>{
-
-    const result=await axios.get(`${storyUrl + storyId}.json`).then(({data})=> data)
+export const getStory=async storyId =>{
+  const result=await axios
+  .get(`${storyUrl + storyId}.json`)
+  .then(({ data  })=> selectFields(data))
     return result;
 }
 
