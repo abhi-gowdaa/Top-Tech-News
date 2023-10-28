@@ -7,7 +7,7 @@ import {
   StoryMetaElement,
 } from "../styles/StoryStyles";
  
-
+import { mapTime } from "../mappers/mapTime";
 
 
 //storyId is a props
@@ -33,7 +33,7 @@ export const Story = ({ storyId }) => {
 
         <span  data-testid="story-time">
           <StoryMetaElement color="#000">Posted:</StoryMetaElement>
-          {story.time}
+          {mapTime(story.time)}
         </span>
       </StoryMeta>
     </StoryWapper>
